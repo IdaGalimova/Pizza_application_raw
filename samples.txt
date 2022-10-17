@@ -1,0 +1,56 @@
+# working code that doesn't allow to go < 0, but the amount of pizzas is not stored :(
+
+{% extends "layout.html" %}
+{% block content %}
+<div class="container mt-5">
+    <h3>This is Pizza Project</h3>
+
+    <div class="card" style="width: 18rem;">
+        <img class="card-img-top" src="static/pepperoni1.webp" alt="Card image cap">
+        <div class="card-body">
+            <h5 class="card-title">Pepperoni</h5>
+            <div class="input-group mb-3">
+                <div class="btn-group" role="group" aria-label="Basic example">
+                    <button type="button" class="btn btn-primary" value="1"
+                        onClick="adding_pepperoni_amount(this.value);">+</button>
+                    <h4 class="text-center" id="pepperoni_amount">{{ pepperoni_amount }}</h4>
+                    <button type="button" class="btn btn-primary" value="-1"
+                        onClick="adding_pepperoni_amount(this.value);">-</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+{{ pepperoni_amount }}
+
+
+<!-- <script>
+    var total = 0;
+
+    function adding_pepperoni_amount(value) {
+        console.log(total)
+        total = parseInt(value) + total;
+        document.getElementById('pepperoni_amount').innerHTML = total.toFixed(0);
+    }
+
+</script> -->
+
+<script>
+    var total = 0;
+
+    function adding_pepperoni_amount(value) {
+        total = parseInt(value) + total;
+        if (total >= 0) {
+            console.log("YES")
+        }
+        else {
+            total = 0
+        }
+        document.getElementById('pepperoni_amount').innerHTML = total.toFixed(0);
+    }
+
+</script>
+
+{% endblock %}
