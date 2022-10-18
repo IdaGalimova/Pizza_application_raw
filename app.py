@@ -4,30 +4,34 @@ app = Flask(__name__)
 
 pepperoni_amount = 0
 data = "NULL"
-order_info = {}
 
 
 @app.route('/returnjson1', methods = ['POST'])
 def ReturnJSON():
-    global data, pepperoni_amount
+    global order_info, data, pepperoni_amount
+    order_info = {}
     data = request.get_json()
     print(data['pepperoni_amount'])
+
+# {'pepperoni_amount': 3}
+
     order_info['pepperoni_amount'] = data['pepperoni_amount']
     
     return "OK"
 
 @app.route("/")
-def manual_page():
+def home_page():
 
-    return render_template("home.html", pepperoni_amount = pepperoni_amount, order_info = order_info)
+    return render_template("home.html", pepperoni_amount = pepperoni_amount)
 
+@app.route("/shopping_cart")
+def shopping_cart_page():
+    for key, value in order_info.items():
+        print(key, value)
+    # if order_info = 
 
-@app.route('/handle_data', methods=['POST'])
-def handle_data():
-    pizza_amount = request.form['pizza_amount']
-    print(pizza_amount)
-    
-    return "OK"
+    return render_template("shopping_cart.html", order_info = order_info)
+
 
 
 if __name__ == '__main__':
