@@ -1,37 +1,40 @@
-# trying to make csv work:
-import csv, time
+from flask import Flask, render_template, request, jsonify
+import random
+from time import sleep
+from datetime import datetime
 
-header = ['ID', "table_number", "time", "order"]
+app = Flask(__name__)
+id = 0
 
-order = {
-    "pepperoni_amount": 15,
-    "hawaii": 5
-}
-
-data = {'ID': '0', "table_number": '0', "time": "0", "order": "0"}
-
-data["ID"] = '4'
-data["table_number"] = '5'
-data["time"] = '13:47:37'
-data["order"] = order
-
-csv_file = "order_data.csv"
-
-with open(csv_file, 'a', newline='') as csvfile:
-    writer = csv.DictWriter(csvfile, fieldnames=header)
-    # writer.writeheader()
+def generate(id):
     
-    writer.writerow(data)
+    table = random.randint(0, 5)
+    # EstTime = "15 minutes"
+    Now = datetime.now()
+    time = Now.strftime("%H:%M:%S")
+    time = time.lstrip('0')
+    time = time.lower()
 
-with open(csv_file, 'r') as csvfile:
-    reader = csv.DictReader(csvfile)
-    general_data_list = []
-    for line in reader:
-        general_data_list.append(line)
-        
+    if id <= 999:
+        id = id + 1
+    else:
+        id = 100
 
-for general_data in general_data_list:
-    # print(line)   
-    order = {}
-    exec("data2 = " + general_data["order"]) 
-    print(general_data["ID"], order["pepperoni_amount"])
+    return table, time, id
+
+
+
+while True:
+    table, time, id = generate(id)
+    print(id)
+    sleep(1)
+
+# @app.route("/")
+# def home_page():
+    
+
+#     return render_template("home.html")
+
+
+# if __name__ == '__main__':
+#     app.run()
