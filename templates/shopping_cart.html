@@ -1,6 +1,15 @@
 {% extends "layout.html" %}
 {% block content %}
 <h1>Shopping cart:</h1>
+
+<form action="/confirmation_page" method="post">
+    <label>Table number:</label><br>
+
+    <input type="text" name="table_number" value=""><br><br>
+    <a class="btn btn-primary" href="/confirmation_page" role="button">Pay</a>
+
+</form>
+
 <p>{{ raw_order_data }}</p>
-<a class="btn btn-primary" href="/confirmation_page" role="button">Pay</a>
+
 {% endblock %}

@@ -1,0 +1,32 @@
+.body{
+    background-color: #F3E2B3;
+    /*background-image: url("logo 1000px.png");
+    background-repeat: repeat;*/
+}
+
+.order{
+    margin: 20px;
+}
+
+.bgc{
+    background-color: #c32105;
+    opacity: 70%;
+}
+
+.hero-image {
+    background-image: url("logo_low_opacity.png");
+    height: 1000px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+  }
+
+.card_text{
+    color: #c32105;
+}
+
+.info{
+    color: black;
+}
+
