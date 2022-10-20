@@ -14,6 +14,7 @@ raw_order_data = {}
 def ReturnJSON():
     global raw_order_data, pepperoni_amount
     raw_order_data = request.get_json()
+    # raw_order_data["hawaii"] = request.get_json()
 
     return "OK"
 
