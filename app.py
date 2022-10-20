@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, jsonify
+from flask import Flask, render_template, request, redirect
 import csv, random
 from datetime import datetime
 import os.path
@@ -21,9 +21,8 @@ def ReturnJSON():
 def get_table_number():
     global table_number
     table_number = request.form['table_number']
-    print(table_number)
 
-    return "OK"
+    return redirect('/confirmation_page')
 
 
 @app.route("/")
@@ -39,7 +38,6 @@ def shopping_cart_page():
 
 
 def generate(id):
-    table = random.randint(0, 5)
     Now = datetime.now()
     time = Now.strftime("%H:%M:%S")
     time = time.lstrip('0')
@@ -49,21 +47,22 @@ def generate(id):
         id = id + 1
     else:
         id = 100
-    return table, time, id
+    return time, id
 
 
 @app.route("/confirmation_page")
 def confirmation_page():
     global id, general_data_list, order
+    print(table_number)
 
-    table, time, id = generate(id)
+    time, id = generate(id)
 
     header = ['ID', "table_number", "time", "order"]
 
     data = {'ID': '0', "table_number": '0', "time": "0", "order": "0"}
 
     data["ID"] = id
-    data["table_number"] = table
+    data["table_number"] = table_number
     data["time"] = time
     data["order"] = raw_order_data
 
