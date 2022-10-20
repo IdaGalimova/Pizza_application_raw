@@ -3,7 +3,7 @@ diction = {
     "hawaii": 3
 }
 
-print(diction)
+# print(diction)
 
 print("Printing items:")
 # for item in diction:

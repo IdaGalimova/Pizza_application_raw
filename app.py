@@ -9,6 +9,7 @@ pepperoni_amount = 0
 
 data = "NULL"
 id = 0
+order_list = []
 raw_order_data = {}
 @app.route('/returnjson1', methods=['POST'])
 def ReturnJSON():
@@ -53,7 +54,9 @@ def generate(id):
 
 @app.route("/confirmation_page")
 def confirmation_page():
-    global id, general_data_list, order
+    global id, general_data_list, order_list
+    
+    order = {}
     print(table_number)
 
     time, id = generate(id)
@@ -88,11 +91,13 @@ def confirmation_page():
             general_data_list.append(line)
 
     for general_data in general_data_list:
-        order = {}
-
+        
         lcls = locals()
         exec("order = " + general_data["order"], globals(), lcls)
         order = lcls["order"]
+        order_list.append(order)
+    print(order_list)
+
 
     displayed_general_data = general_data_list[len(general_data_list) - 1]
 
@@ -100,8 +105,9 @@ def confirmation_page():
 
 @app.route("/luigi")
 def luigiview():
+    list_length = len(general_data_list)
 
-     return render_template("luigiview.html", general_data_list=general_data_list, order=order)
+    return render_template("luigiview.html", general_data_list=general_data_list, order_list=order_list, list_length = list_length)
 
 
 if __name__ == '__main__':
