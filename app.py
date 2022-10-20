@@ -10,12 +10,22 @@ pepperoni_amount = 0
 data = "NULL"
 id = 0
 order_list = []
-raw_order_data = {}
+raw_pepperoni_data, raw_hawaii_data = {}, {}
+
+
 @app.route('/returnjson1', methods=['POST'])
-def ReturnJSON():
-    global raw_order_data, pepperoni_amount
-    raw_order_data = request.get_json()
-    # raw_order_data["hawaii"] = request.get_json()
+def ReturnPepperoni():
+    global raw_pepperoni_data
+    raw_pepperoni_data = request.get_json()
+    print("Pepperoni:", raw_pepperoni_data)
+
+    return "OK"
+
+@app.route('/returnjson2', methods=['POST'])
+def ReturnHawaii():
+    global raw_hawaii_data
+    raw_hawaii_data = request.get_json()
+    print("Hawaii", raw_hawaii_data)
 
     return "OK"
 
@@ -35,6 +45,8 @@ def home_page():
 
 @app.route("/shopping_cart")
 def shopping_cart_page():
+    global raw_order_data
+    raw_order_data = raw_pepperoni_data | raw_hawaii_data
 
     return render_template("shopping_cart.html", raw_order_data=raw_order_data)
 
@@ -55,9 +67,9 @@ def generate(id):
 @app.route("/confirmation_page")
 def confirmation_page():
     global id, general_data_list, order_list
-    
     order = {}
-    print(table_number)
+    
+    print("The whole order", raw_order_data)
 
     time, id = generate(id)
 
@@ -96,7 +108,6 @@ def confirmation_page():
         exec("order = " + general_data["order"], globals(), lcls)
         order = lcls["order"]
         order_list.append(order)
-    print(order_list)
 
 
     displayed_general_data = general_data_list[len(general_data_list) - 1]

@@ -33,7 +33,7 @@ function adding_hawaii_amount(value) {
     console.log(total_hawaii)
     var json_hawaii = { "hawaii_amount": total_hawaii }
     $.ajax({
-        url: '/returnjson1',
+        url: '/returnjson2',
         type: 'POST',
         contentType: 'application/json',
         data: JSON.stringify(json_hawaii),

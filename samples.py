@@ -1,13 +1,13 @@
-diction = {
-    "pepperoni": 1,
+diction_pep = {
+    "pepperoni": 1
+}
+
+diction_haw = {
     "hawaii": 3
 }
 
-# print(diction)
+diction_final = diction_pep | diction_haw
+# dest = {**orig, **extra}    
 
-print("Printing items:")
-# for item in diction:
-#     print(item)
+print("Printing final dictionary:", diction_final)
 
-for key, value in diction.items():
-    print(key, value)

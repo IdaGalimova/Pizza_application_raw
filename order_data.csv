@@ -1,15 +1,2 @@
 ID,table_number,time,order
-3,,13:08:19,{'pepperoni_amount': 3}
-1,11,13:24:57,"{'pepperoni_amount': 1, 'hawaii': {...}}"
-2,12,13:25:38,"{'pepperoni_amount': 2, 'hawaii': {...}}"
-1,,13:43:09,"{'pepperoni_amount': 1, 'hawaii': {...}}"
-1,,13:44:24,"{'pepperoni_amount': 1, 'hawaii': {...}}"
-1,,13:45:15,"{'pepperoni_amount': 2, 'hawaii': {...}}"
-1,,13:50:06,"{'pepperoni_amount': 3, 'hawaii': {...}}"
-1,1111,13:57:09,"{'pepperoni_amount': 10, 'hawaii': {...}}"
-1,,14:01:35,"{'pepperoni_amount': 2, 'hawaii': {...}}"
-1,,14:04:03,"{'pepperoni_amount': 3, 'hawaii': {...}}"
-1,,14:12:49,"{'pepperoni_amount': 5, 'hawaii': {...}}"
-1,,14:13:30,"{'pepperoni_amount': 3, 'hawaii': {...}}"
-2,,14:17:41,"{'pepperoni_amount': 3, 'hawaii': {...}}"
-3,,14:17:54,"{'pepperoni_amount': 1, 'hawaii': {...}}"
+1,16,14:52:26,"{'pepperoni_amount': 2, 'hawaii_amount': 6}"
