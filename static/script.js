@@ -7,7 +7,9 @@ function adding_pepperoni_amount(value) {
         total_pepperoni = 0;
     }
     console.log(total_pepperoni)
-    var json_pepperoni = { "pepperoni_amount": total_pepperoni }
+    var json_pepperoni = { 
+        "pepperoni_amount": total_pepperoni
+    }
     if (total_pepperoni != 0) {
         $.ajax({
             url: '/returnjson1',

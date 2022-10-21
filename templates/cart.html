@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Pizza - Free Bootstrap 4 Template by Colorlib</title>
+    <title>Shopping Cart</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     
@@ -61,76 +61,43 @@
     <section>
         <div class="container_cart " style="background-image: url(static/images/cartbg.jpg);">
                 <div class="container rounded preview">
+                  <form action="/table_number" method="post">
                     <div class="row preview-header">
                         <h1 class="col prev-title">Order preview</h1>
-                        <button type="button" class="col pay-btn" onclick="window.location.href='confirmation_page.html'">Pay - Total: 58$</button>
+                        <button type="button submit" class="col pay-btn">Pay - Total: {{ total_price }}$</button>
                     </div>
                     <div class="row">
+                      
                         <div class="input table-input" style="width:30%;">
-                            <input type="text" placeholder="Table number" aria-label="Table number" class="form-control" >
+                            <input type="text" placeholder="Table number" aria-label="Table number" class="form-control" name="table_number">
                           </div>
                     </div>
+                  </form>
                       
                     <br>  
                     <ul class="list-group list-group-flush order-list">
+                          {% for item, value in raw_order_data.items() %}
                             <li class="list-group-item list-group-item-warning order-list-item">
                                 <div class="row d-flex justify-content-between rand">
                                     <div class="col-7">
-                                        <h3 class="coloring"><strong> Pepperoni pizza </strong></h3>
-                                        <h5 class="coloring">salami, mozzarela, tomato sauce</h5>
+                                        <h3 class="coloring"><strong> {{ item }} </strong></h3>
+                                        <h5 class="coloring">??????</h5>
                                     </div>
                                     <div class="col-2">
-                                        <h2 class="coloring">2</h2>
+                                        <h2 class="coloring">{{ value }}</h2>
                                     </div>
+
                                     <div class="col-2">
-                                        <h2 class="coloring">2 * 12$</h2>
+                                      {% if item == "pepperoni_amount" %}
+                                        <h2 class="coloring">{{ value*10 }}</h2>
+                                      {% endif %}
+                                      {% if item == "hawaii_amount" %}
+                                      <h2 class="coloring">{{ value*15 }}</h2>
+                                      {% endif %}
                                     </div>
                                 </div>
                               </li>
-                              <li class="list-group-item list-group-item-warning order-list-item">
-                                <div class="row d-flex justify-content-between rand">
-                                    <div class="col-7">
-                                        <h3 class="coloring"><strong> Hawaii pizza </strong></h3>
-                                        <h5 class="coloring">ham, pineapple, mozzarela, tomato sauce</h5>
-                                    </div>
-                                    <div class="col-2">
-                                        <h2 class="coloring">1</h2>
-                                    </div>
-                                    <div class="col-2">
-                                        <h2 class="coloring">1 * 9.5$</h2>
-                                    </div>
-                                </div>
-                              </li>
-                              <li class="list-group-item list-group-item-warning order-list-item">
-                                <div class="row d-flex justify-content-between rand">
-                                    <div class="col-7">
-                                        <h3 class="coloring"><strong> Prosciutto Crudo pizza </strong></h3>
-                                        <h5 class="coloring">prosciutto cotto, rucola, cherry tomatoes, mozzarela, tomato sauce</h5>
-                                    </div>
-                                    <div class="col-2">
-                                        <h2 class="coloring">1</h2>
-                                    </div>
-                                    <div class="col-2">
-                                        <h2 class="coloring">1 * 15$</h2>
-                                    </div>
-                                </div>
-                              </li>
-                              <li class="list-group-item list-group-item-warning  order-list-item">
-                                <div class="row d-flex justify-content-between rand">
-                                    <div class="col-7">
-                                        <h3 class="coloring"><strong> Hawaii pizza </strong></h3>
-                                        <h5 class="coloring">ham, pineapple, mozzarela, tomato sauce</h5>
-                                    </div>
-                                    <div class="col-2">
-                                        <h2 class="coloring">1</h2>
-                                    </div>
-                                    <div class="col-2">
-                                        <h2 class="coloring">1 * 9.5$</h2>
-                                    </div>
-                                </div>
-                              </li>
-                              
-                        
+                          {% endfor %}
                       </ul>       
                 </div>
         </div>

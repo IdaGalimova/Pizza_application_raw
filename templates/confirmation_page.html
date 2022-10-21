@@ -61,15 +61,20 @@
                                 <img src="static/images/prep_animation.png" alt="food prep" style="height: 350px;">
                             </div>
                             <div class="col">
-                                <h1 class="prev-title coloring2"><strong> Order #91 </strong></h1>
+                                <h1 class="prev-title coloring2"><strong> Order #{{ displayed_general_data["ID"] }} </strong></h1>
                                 <br>
                                 <h1 class="coloring2"><strong>We are preparing your order</strong></h1>
                                 <br>
-                                <h2 class="coloring2"><strong> Estimated time:</strong> 30-45 minutes</h2>
+                                
+                                <h2 class="coloring2"><strong> Items:</strong> {% for key,value in order.items() %}
+                                  {{ key }}
+                                  {{ value }}
+                                  {% endfor %}
+                                </h2>
                                 <br>
-                                <h2 class="coloring2"><strong> Ordering time: </strong>12:45</h2>
+                                <h2 class="coloring2"><strong> Ordering time: </strong>{{ displayed_general_data["time"] }}</h2>
                                 <br>
-                                <h2 class="coloring2"><strong> Table number: </strong>12</h2>
+                                <h2 class="coloring2"><strong> Table number:  </strong>{{ displayed_general_data["table_number"] }}</h2>
                             </div>
                         </div>
                     </div>        

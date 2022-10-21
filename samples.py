@@ -1,11 +1,22 @@
 diction_pep = {
-    "pepperoni": 1
+    "pizza_name": "pepperoni",
+    "amount": 5,
+    "price": 10
 }
 
-diction_haw = {}
+diction_haw = {
+    "hawaii": 10
+}
 
-# diction_pep = {}
-dest = {**diction_pep, **diction_haw}    
+diction = {}
+diction = diction_pep| diction_haw    
 
-print("Printing final dictionary:", dest)
+print("Printing final dictionary:", diction)
 
+for key, value in diction_pep.items():
+    if key == "pizza_name":
+        print("BLALA")
+    else:
+        print(0)
+    # print("Item:", key)
+    # print("Value:", value)

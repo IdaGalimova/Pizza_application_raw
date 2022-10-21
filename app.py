@@ -76,7 +76,7 @@ def shopping_cart_page():
     global raw_order_data
     raw_order_data = raw_pepperoni_data | raw_hawaii_data
 
-    print("Pepperoni data:", raw_pepperoni_data)
+    print("Raw order data:", raw_order_data)
     if 'pepperoni_amount' in raw_pepperoni_data.keys():
         total_pepperoni_price = calculate_price(raw_pepperoni_data['pepperoni_amount'],10)
     else:
@@ -89,7 +89,7 @@ def shopping_cart_page():
     total_price = total_pepperoni_price + total_hawaii_price
 
 
-    return render_template("shopping_cart.html", raw_order_data=raw_order_data,total_pepperoni_price=total_pepperoni_price, total_hawaii_price=total_hawaii_price,total_price=total_price)
+    return render_template("cart.html", raw_order_data=raw_order_data,total_pepperoni_price=total_pepperoni_price, total_hawaii_price=total_hawaii_price,total_price=total_price)
 
 @app.route("/confirmation_page")
 def confirmation_page():
@@ -135,7 +135,7 @@ def confirmation_page():
 
     displayed_general_data = general_data_list[len(general_data_list) - 1]
 
-    return render_template("confirmation.html", order=order, displayed_general_data=displayed_general_data)
+    return render_template("confirmation_page.html", order=order, displayed_general_data=displayed_general_data)
 
 @app.route("/luigi")
 def luigiview():
