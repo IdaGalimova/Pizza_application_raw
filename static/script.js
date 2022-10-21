@@ -1,25 +1,26 @@
-var total = 0;
-total = parseInt(total)
+var total_pepperoni = 0;
+total_pepperoni = parseInt(total_pepperoni)
 
 function adding_pepperoni_amount(value) {
-    total = parseInt(value) + total;
-    if (total < 0) {
-        total = 0;
+    total_pepperoni = parseInt(value) + total_pepperoni;
+    if (total_pepperoni < 0) {
+        total_pepperoni = 0;
     }
-    console.log(total)
-    var test = { "pepperoni_amount": total }
-    $.ajax({
-        url: '/returnjson1',
-        type: 'POST',
-        contentType: 'application/json',
-        data: JSON.stringify(test),
+    console.log(total_pepperoni)
+    var json_pepperoni = { "pepperoni_amount": total_pepperoni }
+    if (total_pepperoni != 0) {
+        $.ajax({
+            url: '/returnjson1',
+            type: 'POST',
+            contentType: 'application/json',
+            data: JSON.stringify(json_pepperoni),
 
-        success: function (response) {
-            $('#main').text(response)
-        }
-    })
-
-    document.getElementById('pepperoni_amount').innerHTML = total;
+            success: function (response) {
+                $('#main').text(response)
+            }
+        })
+    }
+    document.getElementById('pepperoni_amount').innerHTML = total_pepperoni;
 }
 
 var total_hawaii = 0;
@@ -32,16 +33,18 @@ function adding_hawaii_amount(value) {
     }
     console.log(total_hawaii)
     var json_hawaii = { "hawaii_amount": total_hawaii }
-    $.ajax({
-        url: '/returnjson2',
-        type: 'POST',
-        contentType: 'application/json',
-        data: JSON.stringify(json_hawaii),
+    if (total_hawaii != 0) {
+        $.ajax({
+            url: '/returnjson2',
+            type: 'POST',
+            contentType: 'application/json',
+            data: JSON.stringify(json_hawaii),
 
-        success: function (response) {
-            $('#main').text(response)
-        }
-    })
+            success: function (response) {
+                $('#main').text(response)
+            }
+        })
+    }
 
     document.getElementById('hawaii_amount').innerHTML = total_hawaii;
 }

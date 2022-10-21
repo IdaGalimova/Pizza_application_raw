@@ -1,2 +1,5 @@
 ID,table_number,time,order
-1,16,14:52:26,"{'pepperoni_amount': 2, 'hawaii_amount': 6}"
+1,,12:59:30,{'pepperoni_amount': 2}
+2,,12:59:48,"{'pepperoni_amount': 1, 'hawaii_amount': 6}"
+3,,12:59:59,"{'pepperoni_amount': 2, 'hawaii_amount': 0}"
+4,,13:02:04,{'pepperoni_amount': 3}

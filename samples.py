@@ -2,12 +2,10 @@ diction_pep = {
     "pepperoni": 1
 }
 
-diction_haw = {
-    "hawaii": 3
-}
+diction_haw = {}
 
-diction_final = diction_pep | diction_haw
-# dest = {**orig, **extra}    
+# diction_pep = {}
+dest = {**diction_pep, **diction_haw}    
 
-print("Printing final dictionary:", diction_final)
+print("Printing final dictionary:", dest)
 

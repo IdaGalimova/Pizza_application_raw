@@ -2,17 +2,19 @@
 {% block content %}
 <div class="container mt-5">
     <h3>This is Pizza Project</h3>
+    
 
     <div class="card" style="width: 18rem;">
         <img class="card-img-top" src="static/pepperoni1.webp" alt="Card image cap">
         <div class="card-body">
             <h5 class="card-title">Pepperoni</h5>
+            <p>price: 10 euro</p>
             <div class="input-group mb-3">
                 <div class="btn-group" role="group" aria-label="Basic example">
                     <button type="button" class="btn btn-primary" value="1"
                         onClick="adding_pepperoni_amount(this.value);">+</button>
 
-                    <h4 class="text-center" id="pepperoni_amount">0</h4>
+                    <h4 class="text-center" id="pepperoni_amount">{{ pepperoni_amount }}</h4>
 
                     <button type="button" class="btn btn-primary" value="-1"
                         onClick="adding_pepperoni_amount(this.value);">-</button>
@@ -25,6 +27,7 @@
         <img class="card-img-top" src="static/pepperoni1.webp" alt="Card image cap">
         <div class="card-body">
             <h5 class="card-title">Hawaii</h5>
+            <p>price: 15 euro</p>
             <div class="input-group mb-3">
                 <div class="btn-group" role="group" aria-label="Basic example">
                     <button type="button" class="btn btn-primary" value="1"
