@@ -145,5 +145,14 @@ def luigiview():
     return render_template("luigiview.html", general_data_list=general_data_list, order_list=order_list, list_length = list_length)
 
 
+@app.route("/confirmation_steph")
+def confirmation_steph():
+    # list_length = len(general_data_list)
+    
+
+    return render_template("/steph's pages/confirmation_page.html")
+
+
+
 if __name__ == '__main__':
     app.run()
