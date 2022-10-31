@@ -5,15 +5,13 @@ import os.path
 
 app = Flask(__name__)
 
-pepperoni_amount = 0
-
-data = "NULL"
 id = 0
+total, total_pepperoni_price, total_hawaii_price = 0, 0, 0
 
 raw_pepperoni_data, raw_hawaii_data = {}, {}
 pepperoni_price = 10
 hawaii_price = 15
-raw_hawaii_data['hawaii_amount'] = 0
+# raw_hawaii_data['hawaii_amount'] = 0
 
 def calculate_price(pizza_amount, price):
     total = 0
@@ -52,6 +50,7 @@ def ReturnHawaii():
     global raw_hawaii_data
     
     raw_hawaii_data = request.get_json()
+    print(raw_hawaii_data)
 
     return "OK"
 
@@ -68,23 +67,20 @@ def home_page():
     global raw_pepperoni_data, raw_hawaii_data
     raw_pepperoni_data, raw_hawaii_data = {}, {}
 
-    return render_template("home.html", pepperoni_amount=pepperoni_amount)
+    return render_template("home.html")
 
 
 @app.route("/shopping_cart")
 def shopping_cart_page():
-    global raw_order_data
+    global raw_order_data, total_pepperoni_price, total_hawaii_price
     raw_order_data = raw_pepperoni_data | raw_hawaii_data
 
-    print("Raw order data:", raw_order_data)
-    if 'pepperoni_amount' in raw_pepperoni_data.keys():
-        total_pepperoni_price = calculate_price(raw_pepperoni_data['pepperoni_amount'],10)
-    else:
-        total_pepperoni_price = 0
-    if 'hawaii_amount' in raw_hawaii_data.keys():
-        total_hawaii_price = calculate_price(raw_hawaii_data['hawaii_amount'],15)
-    else:
-        total_hawaii_price = 0
+    if 'Pepperoni' in raw_pepperoni_data.keys():
+        total_pepperoni_price = calculate_price(raw_pepperoni_data['Pepperoni'],10)
+
+    if 'Hawaii' in raw_hawaii_data.keys():
+        total_hawaii_price = calculate_price(raw_hawaii_data['Hawaii'],15)
+
 
     total_price = total_pepperoni_price + total_hawaii_price
 

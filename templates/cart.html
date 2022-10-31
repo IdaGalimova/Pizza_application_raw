@@ -80,19 +80,18 @@
                             <li class="list-group-item list-group-item-warning order-list-item">
                                 <div class="row d-flex justify-content-between rand">
                                     <div class="col-7">
-                                        <h3 class="coloring"><strong> {{ item }} </strong></h3>
-                                        <h5 class="coloring">??????</h5>
+                                        <h3 class="coloring"><strong> {{ item }} pizza </strong></h3>
                                     </div>
                                     <div class="col-2">
-                                        <h2 class="coloring">{{ value }}</h2>
+                                        <h2 class="coloring">{{ value }} </h2>
                                     </div>
 
                                     <div class="col-2">
-                                      {% if item == "pepperoni_amount" %}
-                                        <h2 class="coloring">{{ value*10 }}</h2>
+                                      {% if item == "Pepperoni" %}
+                                        <h2 class="coloring">{{ total_pepperoni_price }}$</h2>
                                       {% endif %}
-                                      {% if item == "hawaii_amount" %}
-                                      <h2 class="coloring">{{ value*15 }}</h2>
+                                      {% if item == "Hawaii" %}
+                                      <h2 class="coloring">{{ total_hawaii_price }}$</h2>
                                       {% endif %}
                                     </div>
                                 </div>

@@ -6,9 +6,9 @@ function adding_pepperoni_amount(value) {
     if (total_pepperoni < 0) {
         total_pepperoni = 0;
     }
-    console.log(total_pepperoni)
+    // console.log(total_pepperoni)
     var json_pepperoni = { 
-        "pepperoni_amount": total_pepperoni
+        "Pepperoni": total_pepperoni
     }
     if (total_pepperoni != 0) {
         $.ajax({
@@ -33,8 +33,8 @@ function adding_hawaii_amount(value) {
     if (total_hawaii < 0) {
         total_hawaii = 0;
     }
-    console.log(total_hawaii)
-    var json_hawaii = { "hawaii_amount": total_hawaii }
+    // console.log(total_hawaii)
+    var json_hawaii = { "Hawaii": total_hawaii }
     if (total_hawaii != 0) {
         $.ajax({
             url: '/returnjson2',
@@ -47,6 +47,6 @@ function adding_hawaii_amount(value) {
             }
         })
     }
-
+    console.log(total_hawaii)
     document.getElementById('hawaii_amount').innerHTML = total_hawaii;
 }
