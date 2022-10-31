@@ -105,7 +105,7 @@ def home_page():
     global raw_pepperoni_data, raw_hawaii_data
     raw_pepperoni_data, raw_hawaii_data = {}, {}
 
-    return render_template("home.html")
+    return render_template("index.html")
 
 
 @app.route("/shopping_cart")
