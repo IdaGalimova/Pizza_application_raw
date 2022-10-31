@@ -88,10 +88,22 @@
 
                                     <div class="col-2">
                                       {% if item == "Pepperoni" %}
-                                        <h2 class="coloring">{{ total_pepperoni_price }}$</h2>
+                                        <h2 class="coloring">{{ totals['total_pepperoni_price'] }}$</h2>
                                       {% endif %}
-                                      {% if item == "Hawaii" %}
-                                      <h2 class="coloring">{{ total_hawaii_price }}$</h2>
+                                      {% if item == "Prosciutto Crudo" %}    
+                                      <h2 class="coloring">{{ totals['total_prosciutto_crudo_price'] }}$</h2>
+                                      {% endif %}
+                                      {% if item == "Quatro Carni" %}    
+                                      <h2 class="coloring">{{ totals['total_quatro_carni_price'] }}$</h2>
+                                      {% endif %}
+                                      {% if item == "Napoli" %}    
+                                      <h2 class="coloring">{{ totals['total_napoli_price'] }}$</h2>
+                                      {% endif %}
+                                      {% if item == "Della Casa" %}    
+                                      <h2 class="coloring">{{ totals['total_napoli_price'] }}$</h2>
+                                      {% endif %}
+                                      {% if item == "Quatro Formaggi" %}
+                                        <h2 class="coloring">{{ totals['total_quatro_formaggi_price'] }}$</h2>
                                       {% endif %}
                                     </div>
                                 </div>

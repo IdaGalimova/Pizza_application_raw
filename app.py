@@ -6,12 +6,18 @@ import os.path
 app = Flask(__name__)
 
 id = 0
-total, total_pepperoni_price, total_hawaii_price = 0, 0, 0
+total_price = 0
+total = 0 
 
-raw_pepperoni_data, raw_hawaii_data = {}, {}
+raw_pepperoni_data, raw_prosciutto_crudo_data, raw_quatro_formaggi_data, raw_quatro_carni_data, raw_della_casa_data, raw_napoli_data = {}, {}, {}, {}, {}, {}
 pepperoni_price = 10
 hawaii_price = 15
-# raw_hawaii_data['hawaii_amount'] = 0
+prosciutto_crudo_price = 12
+quatro_formaggi_price = 15
+quatro_carni_price = 15
+della_casa_price = 40
+napoli_price = 5
+
 
 def calculate_price(pizza_amount, price):
     total = 0
@@ -37,7 +43,7 @@ if os.path.exists(filename):
     os.remove(filename)
 
 
-@app.route('/returnjson1', methods=['POST'])
+@app.route('/returnjsonPepperoni', methods=['POST'])
 def ReturnPepperoni():
     global raw_pepperoni_data
     
@@ -45,12 +51,44 @@ def ReturnPepperoni():
 
     return "OK"
 
-@app.route('/returnjson2', methods=['POST'])
-def ReturnHawaii():
-    global raw_hawaii_data
+@app.route('/returnjsonQuatroFormaggi', methods=['POST'])
+def ReturnQuatroFormaggi():
+    global raw_quatro_formaggi_data
     
-    raw_hawaii_data = request.get_json()
-    print(raw_hawaii_data)
+    raw_quatro_formaggi_data = request.get_json()
+    print(raw_quatro_formaggi_data)
+
+    return "OK"
+
+@app.route('/returnjsonProsciuttoCrudo', methods=['POST'])
+def ReturnProsciuttoCrudo():
+    global raw_prosciutto_crudo_data
+    
+    raw_prosciutto_crudo_data = request.get_json()
+
+    return "OK"
+
+@app.route('/returnjsonQuatroCarni', methods=['POST'])
+def ReturnQuatroCarni():
+    global raw_quatro_carni_data
+    
+    raw_quatro_carni_data = request.get_json()
+
+    return "OK"
+
+@app.route('/returnjsonDellaCasa', methods=['POST'])
+def ReturnDellaCassa():
+    global raw_della_casa_data
+    
+    raw_della_casa_data = request.get_json()
+
+    return "OK"
+
+@app.route('/returnjsonNapoli', methods=['POST'])
+def ReturnNapoli():
+    global raw_napoli_data
+    
+    raw_napoli_data = request.get_json()
 
     return "OK"
 
@@ -72,20 +110,26 @@ def home_page():
 
 @app.route("/shopping_cart")
 def shopping_cart_page():
-    global raw_order_data, total_pepperoni_price, total_hawaii_price
-    raw_order_data = raw_pepperoni_data | raw_hawaii_data
+    global raw_order_data
+    raw_order_data = raw_pepperoni_data | raw_quatro_formaggi_data | raw_prosciutto_crudo_data | raw_quatro_carni_data | raw_della_casa_data  | raw_napoli_data 
 
-    if 'Pepperoni' in raw_pepperoni_data.keys():
-        total_pepperoni_price = calculate_price(raw_pepperoni_data['Pepperoni'],10)
+    totals = {}
+    if 'Pepperoni' in raw_order_data.keys():
+        totals['total_pepperoni_price'] = calculate_price(raw_order_data['Pepperoni'], pepperoni_price)
+    if 'Prosciutto Crudo' in raw_order_data.keys():
+        totals['total_prosciutto_crudo_price'] = calculate_price(raw_order_data['Prosciutto Crudo'], prosciutto_crudo_price)
+    if 'Quatro Carni' in raw_order_data.keys():
+        totals['total_quatro_carni_price'] = calculate_price(raw_order_data['Quatro Carni'], quatro_carni_price)
+    if 'Napoli' in raw_order_data.keys():
+        totals['total_napoli_price'] = calculate_price(raw_order_data['Napoli'], napoli_price)
+    if 'Della Casa' in raw_order_data.keys():
+        totals['total_della_casa_price'] = calculate_price(raw_order_data['Della Casa'], della_casa_price)
+    if 'Quatro Formaggi' in raw_order_data.keys():
+        totals['total_quatro_formaggi_price'] = calculate_price(raw_order_data['Quatro Formaggi'], quatro_formaggi_price)
 
-    if 'Hawaii' in raw_hawaii_data.keys():
-        total_hawaii_price = calculate_price(raw_hawaii_data['Hawaii'],15)
+    total_price = sum(totals.values())
 
-
-    total_price = total_pepperoni_price + total_hawaii_price
-
-
-    return render_template("cart.html", raw_order_data=raw_order_data,total_pepperoni_price=total_pepperoni_price, total_hawaii_price=total_hawaii_price,total_price=total_price)
+    return render_template("cart.html", raw_order_data=raw_order_data, totals = totals, total_price = total_price)
 
 @app.route("/confirmation_page")
 def confirmation_page():
