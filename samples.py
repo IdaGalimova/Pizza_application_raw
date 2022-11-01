@@ -1,27 +1,8 @@
-diction_pep = {
-    "pep": 5,
-    "haw": 10,
-}
+list1 = ["1", "2", "3"]
 
-# diction_haw = {
-#     "pizza name": "hawaii",
-#     "amount": 5,
-#     "price": 15,
-#     "description": "mozarella, bla, bla"
-# }
+id = "2"
 
-diction = {}
-# diction = diction_pep | diction_haw
-# diction["pep"] = diction_pep["amount"]
-# diction["haw"] = diction_haw["amount"]
-# print("Printing dictionary:", diction)
-
-print(sum(diction_pep.values()))
-
-# for key, value in diction_pep.items():
-#     if key == "pizza_name":
-#         print("BLALA")
-#     else:
-#         print(0)
-    # print("Item:", key)
-    # print("Value:", value)
+if id in list1:
+    print("YES")
+else:
+    print("Fuck you, Fuck you toooooooo")

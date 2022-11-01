@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, redirect
-import csv, random
+import csv
 from datetime import datetime
 import os.path
 
@@ -9,19 +9,17 @@ id = 0
 total_price = 0
 total = 0 
 
-raw_pepperoni_data, raw_prosciutto_crudo_data, raw_quatro_formaggi_data, raw_quatro_carni_data, raw_della_casa_data, raw_napoli_data = {}, {}, {}, {}, {}, {}
-pepperoni_price = 10
-hawaii_price = 15
-prosciutto_crudo_price = 12
-quatro_formaggi_price = 15
-quatro_carni_price = 15
-della_casa_price = 40
-napoli_price = 5
-
+prosciutto_crudo_price = 12.99
+pepperoni_price = 9.90
+quatro_formaggi_price = 14.90
+quatro_carni_price = 14.90
+della_casa_price = 12.90
+napoli_price = 9.90
+ids_list = []
 
 def calculate_price(pizza_amount, price):
     total = 0
-    total = (pizza_amount*price)
+    total = round((pizza_amount*price), 2)
     return total
 
 def generate(id):
@@ -39,7 +37,7 @@ def generate(id):
 
 filename = "order_data.csv"
 
-if os.path.exists(filename):
+if os.path.exists(filename): 
     os.remove(filename)
 
 
@@ -92,6 +90,16 @@ def ReturnNapoli():
 
     return "OK"
 
+
+@app.route('/orderDone', methods=['POST'])
+def ReturnOrderDataDone():
+    global ID_order_done
+    
+    ID_order_done = request.get_json()
+
+    return "OK"
+
+
 @app.route("/table_number", methods=['POST'])
 def get_table_number():
     global table_number
@@ -102,8 +110,8 @@ def get_table_number():
 
 @app.route("/")
 def home_page():
-    global raw_pepperoni_data, raw_hawaii_data
-    raw_pepperoni_data, raw_hawaii_data = {}, {}
+    global raw_pepperoni_data, raw_prosciutto_crudo_data, raw_quatro_formaggi_data, raw_quatro_carni_data, raw_della_casa_data, raw_napoli_data
+    raw_pepperoni_data, raw_prosciutto_crudo_data, raw_quatro_formaggi_data, raw_quatro_carni_data, raw_della_casa_data, raw_napoli_data = {}, {}, {}, {}, {}, {}
 
     return render_template("index.html")
 
@@ -133,7 +141,7 @@ def shopping_cart_page():
 
 @app.route("/confirmation_page")
 def confirmation_page():
-    global id, general_data_list, order_list
+    global id, general_data_list, order_list, ID_order_done
     order = {}
     order_list = []
 
@@ -175,24 +183,31 @@ def confirmation_page():
 
     displayed_general_data = general_data_list[len(general_data_list) - 1]
 
+    ID_order_done = {}
+
     return render_template("confirmation_page.html", order=order, displayed_general_data=displayed_general_data)
 
 @app.route("/luigi")
 def luigiview():
+    global list_length
     list_length = len(general_data_list)
     
 
     return render_template("luigiview.html", general_data_list=general_data_list, order_list=order_list, list_length = list_length)
 
-
-@app.route("/confirmation_steph")
-def confirmation_steph():
-    # list_length = len(general_data_list)
+@app.route("/mario")
+def marioview():
+    global ID_order_done
+    list_length = len(general_data_list)
+    
+    if not ID_order_done:
+        pass
+    else:
+        ids_list.append(str(ID_order_done["ID"]))
+    # print("IDS list:", ids_list)
     
 
-    return render_template("/steph's pages/confirmation_page.html")
-
-
+    return render_template("marioview.html", general_data_list=general_data_list, order_list=order_list, list_length = list_length, ids_list = ids_list, ID_order_done = ID_order_done)
 
 if __name__ == '__main__':
     app.run()

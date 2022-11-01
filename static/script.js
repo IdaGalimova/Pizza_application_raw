@@ -158,3 +158,23 @@ function adding_napoli_amount(value) {
     }
     document.getElementById('napoli_amount').innerHTML = total_napoli;
 }
+
+
+function sending_done_order_data(value){
+    var json_order_done = { 
+        "ID": value,
+    }
+
+    $.ajax({
+        url: '/orderDone',
+        type: 'POST',
+        contentType: 'application/json',
+        data: JSON.stringify(json_order_done),
+
+        success: function (response) {
+            $('#main').text(response)
+        }
+    })
+    console.log(value)
+    document.getElementById('test').innerHTML;
+}
