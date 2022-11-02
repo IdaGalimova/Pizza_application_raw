@@ -64,7 +64,7 @@
                   <form action="/table_number" method="post">
                     <div class="row preview-header">
                         <h1 class="col prev-title">Order preview</h1>
-                        <button type="button submit" class="col pay-btn">Pay - Total: {{ total_price }}$</button>
+                        <button type="button submit" class="col pay-btn">Pay - Total: {{ total_price }}€</button>
                     </div>
                     <div class="row">
                       
@@ -88,22 +88,22 @@
 
                                     <div class="col-2">
                                       {% if item == "Pepperoni" %}
-                                        <h2 class="coloring">{{ totals['total_pepperoni_price'] }}$</h2>
+                                        <h2 class="coloring">{{ totals['total_pepperoni_price'] }}€</h2>
                                       {% endif %}
                                       {% if item == "Prosciutto Crudo" %}    
-                                      <h2 class="coloring">{{ totals['total_prosciutto_crudo_price'] }}$</h2>
+                                      <h2 class="coloring">{{ totals['total_prosciutto_crudo_price'] }}€</h2>
                                       {% endif %}
                                       {% if item == "Quatro Carni" %}    
-                                      <h2 class="coloring">{{ totals['total_quatro_carni_price'] }}$</h2>
+                                      <h2 class="coloring">{{ totals['total_quatro_carni_price'] }}€</h2>
                                       {% endif %}
                                       {% if item == "Napoli" %}    
-                                      <h2 class="coloring">{{ totals['total_napoli_price'] }}$</h2>
+                                      <h2 class="coloring">{{ totals['total_napoli_price'] }}€</h2>
                                       {% endif %}
                                       {% if item == "Della Casa" %}    
-                                      <h2 class="coloring">{{ totals['total_della_casa_price'] }}$</h2>
+                                      <h2 class="coloring">{{ totals['total_della_casa_price'] }}€</h2>
                                       {% endif %}
                                       {% if item == "Quatro Formaggi" %}
-                                        <h2 class="coloring">{{ totals['total_quatro_formaggi_price'] }}$</h2>
+                                        <h2 class="coloring">{{ totals['total_quatro_formaggi_price'] }}€</h2>
                                       {% endif %}
                                     </div>
                                 </div>
