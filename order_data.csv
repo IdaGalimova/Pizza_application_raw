@@ -1,2 +1,4 @@
 ID,table_number,time,order
-1,6,12:35:45,"{'Quatro Formaggi': 3, 'Prosciutto Crudo': 3, 'Della Casa': 1}"
+1,6,11:39:36,{'Pepperoni': 1}
+2,4,11:39:50,{'Della Casa': 1}
+3,5,11:43:43,{'Quatro Carni': 1}

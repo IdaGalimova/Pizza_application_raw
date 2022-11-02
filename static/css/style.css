@@ -558,7 +558,7 @@ pre {
 }
 
 .order-list-item{
-  height: 130px;
+  height: 80px;
 }
 .order-list-item:hover{
   background-color:  #F5BA5E;
